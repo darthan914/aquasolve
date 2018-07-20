@@ -1,0 +1,101 @@
+#navbar {
+    background-color: rgb(101, 100, 106);
+}
+/* maps */
+
+#maps {
+    position: relative;
+    width: 100%;
+    padding-top: 90px;
+    padding-bottom: 0px;
+}
+/* maps */
+
+/* send-message */
+
+#send-message {
+    position: relative;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+#send-message #wrapper {
+    position: relative;
+    width: 40%;
+    margin-left: 50%;
+}
+#send-message h1 {
+    /*text-align: center;*/
+    font-size: 56px;
+    font-family: 'Slabo27px-Regular';
+    margin-top: 0px;
+    margin-bottom: 40px;
+}
+#send-message h2 {
+    font-size: 16px;
+    font-family: 'Quicksand Bold';
+}
+#send-message p {
+    font-size: 12px;
+    font-family: 'Quicksand Regular'
+}
+/* send-message */
+
+/* form */
+
+form.form-style input, form.form-style textarea {
+    display: block;
+    width: 96%;
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    border-color: rgb(158, 158, 158);
+    /*background-color: rgb(235,234,234);*/
+    outline: none;
+}
+form.form-style span {
+    color: red;
+}
+form.form-style button {
+    padding: 10px 20px;
+    color: rgb(48, 48, 48);
+    border: 1px solid rgb(158, 158, 158);
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    transition: all .58s;
+}
+form.form-style button:hover {
+    background-color: rgb(158, 158, 158);
+}
+.alert {
+    padding: 15px;
+    padding-right: 35px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+/* form */
+
+/* mobile */
+
+@media (max-width: 480px) {
+    #send-message #wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+/* mobile */

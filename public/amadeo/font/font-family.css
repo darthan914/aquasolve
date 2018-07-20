@@ -1,0 +1,25 @@
+/* Quicksand */
+    @font-face {
+        font-family: 'Quicksand Light';
+        src: url('../font/Quicksand/Quicksand-Light.ttf');
+    }
+    @font-face {
+        font-family: 'Quicksand Regular';
+        src: url('../font/Quicksand/Quicksand-Regular.ttf');
+    }
+    @font-face {
+        font-family: 'Quicksand Medium';
+        src: url('../font/Quicksand/Quicksand-Medium.ttf');
+    }
+    @font-face {
+        font-family: 'Quicksand Bold';
+        src: url('../font/Quicksand/Quicksand-Bold.ttf');
+    }
+/* Quicksand */
+
+/* Slabo_27px */
+    @font-face {
+        font-family: 'Slabo27px-Regular';
+        src: url('../font/Slabo_27px/Slabo27px-Regular.ttf');
+    }
+/* Slabo_27px */

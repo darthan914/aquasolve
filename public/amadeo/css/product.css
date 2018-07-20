@@ -1,0 +1,184 @@
+#navbar{
+	background-color: rgb(101,100,106);
+}
+/* product */
+	#product{
+		position: relative;
+		margin: 0;
+		width: 100%;
+		padding-top: 120px;
+	}
+	/* product list-wrapper */
+		#product #list-wrapper{
+			position: relative;
+			width: 80%;
+			margin: 0 auto;
+		}
+		#product #list-wrapper img.scrolingSlide{
+			position: absolute;
+			top: 0;
+			cursor: pointer;
+			z-index: 1;
+			height: 20px;
+		}
+		#product #list-wrapper img#left.scrolingSlide{
+			left: 0;
+		}
+		#product #list-wrapper img#right.scrolingSlide{
+			right: 0;
+		}
+		#product #list-wrapper h1{
+			text-align: center;
+			color: rgb(48,48,48);
+	        font-family: 'Slabo27px-Regular';
+		}
+		#product #list-wrapper #list{
+			position: relative;
+			overflow: hidden;
+		}
+		#product #list-wrapper #list .midle{
+			cursor: pointer;
+			position: relative;
+			height: 225px;
+			display: table-cell;
+			vertical-align: middle;
+			padding: 0 10px;
+			text-align: center;
+			color: rgb(48,48,48);
+		}
+		#product #list-wrapper #list .midle.active:after{
+			bottom: 0px;
+		    left: 50%;
+		    border: solid transparent;
+		    content: " ";
+		    height: 0;
+		    width: 0;
+		    position: absolute;
+		    pointer-events: none;
+		    border-color: rgba(236,236,236, 0);
+		    border-bottom-color: rgb(236,236,236);
+		    border-width: 20px;
+		    margin-left: -20px;
+		    z-index: 1;
+		}
+		#product #list-wrapper #list .midle #width{
+			position: relative;
+			width: 200px;
+			text-align: center;
+		}
+		#product #list-wrapper #list .midle img{
+			height: 140px;
+		}
+		#product #list-wrapper #list .midle p{
+	        font-family: 'Quicksand Bold';
+			margin: 5px;
+		}
+		#product #list-wrapper #list .midle h1{
+	        font-family: 'Slabo27px-Regular';
+			margin: 5px;
+		}
+		#product #list-wrapper #list .midle hr{
+			border: 0;
+			border-bottom: 2px solid rgb(251,184,24);
+			width: 80%;
+			margin: 0 auto;
+		}
+	/* product list-wrapper */
+	/* product discrip-wrapper */
+		#product #discrip-wrapper{
+			position: relative;
+			width: 100%;
+			height: 360px;
+			padding-top: 60px;
+			background-color: rgb(236,236,236);
+			background-position: 0% 20%;
+			background-repeat: no-repeat;
+			background-size: cover;
+			transition: all 1.51s;
+		}
+		#product #discrip-wrapper #contain{
+			position: absolute;
+		    height: 100%;
+		    left: 12.5%;
+		    width: 35%;
+		    top: 0px;
+		    padding: 60px 23px;
+		    background-color: #ffffff7d;
+		}
+		#product #discrip-wrapper #contain h1{
+	        font-family: 'Slabo27px-Regular';
+			color: rgb(251,184,24);
+			transition: all 1.51s;
+			transform: translateX(0%);
+			visibility: visible;
+			opacity: 1;
+		}
+		#product #discrip-wrapper #contain p{
+	        font-family: 'Quicksand Bold';
+			color: rgb(48,48,48);
+			transition: all 1.51s;
+			transform: translateX(0%);
+			visibility: visible;
+			opacity: 1;
+		}
+		#product #discrip-wrapper #contain div#website-link{
+			margin-top: 40px;
+			transform: translateX(0%);
+			transition: all 1.51s;
+			visibility: visible;
+			opacity: 1;
+		}
+		#product #discrip-wrapper img{
+			position: absolute;
+			right: 7.5%;
+			top: 17%;
+			height: 280px;
+			transition: all 1.51s;
+			transform: translateX(0%);
+			visibility: visible;
+			opacity: 1;
+		}
+		#product #discrip-wrapper #contain h1.load-data,
+		#product #discrip-wrapper #contain p.load-data,
+		#product #discrip-wrapper #contain div#website-link.load-data,
+		#product #discrip-wrapper  img.load-data{
+			transform: translateX(-400px);
+			visibility: hidden;
+			opacity: 0;
+		}
+	/* product discrip-wrapper */
+	/* mobile */
+		@media (max-width: 480px) {
+			#product #list-wrapper{
+				width: 90%;
+			}
+			#product #list-wrapper #list .midle{
+				padding: 0;
+				height: 80px;
+				width: auto;
+			}
+			#product #list-wrapper #list .midle img{
+				display: none;
+			}
+			#product #list-wrapper #list .midle p{
+				font-size: 12px;
+				transform: rotate(-45deg);
+				word-wrap: break-word;
+			}
+
+			#product #discrip-wrapper{
+				padding: 0;
+				height: 320px;
+			}
+			#product #discrip-wrapper #contain{
+				width: 60%;
+				left: 5%;
+				z-index: 1;
+			}
+			#product #discrip-wrapper img{
+				height: 200px;
+				right: 5%;
+			}
+		}
+	/* mobile */
+/* product */
