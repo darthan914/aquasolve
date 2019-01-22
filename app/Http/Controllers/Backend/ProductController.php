@@ -28,23 +28,23 @@ class ProductController extends Controller
 
     public function addStore(request $request){
 		$message = [
-	        'name.required' => 'Wajib di isi',
-	        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
-	        'descript.required' => 'Wajib di isi',
+	        'name.required' => 'This Field Required',
+	        'name.max' => 'Max Character 35',
+	        'descript.required' => 'This Field Required',
 	        'descript.max' => 'Terlalu Panjang, Maks 250 Karakter',
-	        'category.required' => 'Wajib di isi',
+	        'category.required' => 'This Field Required',
 	        'website.max' => 'Terlalu Panjang, Maks 190 Karakter',
-			'title_picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-			'title_picture.image' => 'Format Gambar Tidak Sesuai',
-			'title_picture.max' => 'File Size Terlalu Besar',
-	        'picture.required' => 'Wajib di isi',
-			'picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-			'picture.image' => 'Format Gambar Tidak Sesuai',
-			'picture.max' => 'File Size Terlalu Besar',
-	        'background_picture.required' => 'Wajib di isi',
-			'background_picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-			'background_picture.image' => 'Format Gambar Tidak Sesuai',
-			'background_picture.max' => 'File Size Terlalu Besar',
+			'title_picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+			'title_picture.image' => 'Invalid Format, Image file only',
+			'title_picture.max' => 'File too large',
+	        'picture.required' => 'This Field Required',
+			'picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+			'picture.image' => 'Invalid Format, Image file only',
+			'picture.max' => 'File too large',
+	        'background_picture.required' => 'This Field Required',
+			'background_picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+			'background_picture.image' => 'Invalid Format, Image file only',
+			'background_picture.max' => 'File too large',
 		];
 
 		$validator = Validator::make($request->all(), [
@@ -97,7 +97,7 @@ class ProductController extends Controller
 		});
 
 
-		return redirect()->route('backend.product')->with('berhasil', 'Berhasil Menambah '.$request->name);
+		return redirect()->route('backend.product')->with('berhasil', 'Data Has Been Added '.$request->name);
     }
 
     public function flagPublish($id){
@@ -109,7 +109,7 @@ class ProductController extends Controller
   			$Product->flug_publish = 'N';
   		}
   		$Product->save();
-	    return redirect()->route('backend.product')->with('berhasil', 'Berhasil Mengubah '.$Product->name);
+	    return redirect()->route('backend.product')->with('berhasil', 'Data Has Been Updated '.$Product->name);
     }
 
     public function flagHome($id){
@@ -121,7 +121,7 @@ class ProductController extends Controller
   			$Product->flug_home = 'N';
   		}
   		$Product->save();
-	    return redirect()->route('backend.product')->with('berhasil', 'Berhasil Mengubah '.$Product->name);
+	    return redirect()->route('backend.product')->with('berhasil', 'Data Has Been Updated '.$Product->name);
     }
 
     public function change($id){
@@ -131,21 +131,21 @@ class ProductController extends Controller
     }
     public function changeStore(request $request,$id){
 		$message = [
-	        'name.required' => 'Wajib di isi',
-	        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
-	        'descript.required' => 'Wajib di isi',
+	        'name.required' => 'This Field Required',
+	        'name.max' => 'Max Character 35',
+	        'descript.required' => 'This Field Required',
 	        'descript.max' => 'Terlalu Panjang, Maks 250 Karakter',
-	        'category.required' => 'Wajib di isi',
+	        'category.required' => 'This Field Required',
 	        'website.max' => 'Terlalu Panjang, Maks 190 Karakter',
-	        'title_picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-			'title_picture.image' => 'Format Gambar Tidak Sesuai',
-			'title_picture.max' => 'File Size Terlalu Besar',
-			'picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-			'picture.image' => 'Format Gambar Tidak Sesuai',
-			'picture.max' => 'File Size Terlalu Besar',
-			'background_picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-			'background_picture.image' => 'Format Gambar Tidak Sesuai',
-			'background_picture.max' => 'File Size Terlalu Besar',
+	        'title_picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+			'title_picture.image' => 'Invalid Format, Image file only',
+			'title_picture.max' => 'File too large',
+			'picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+			'picture.image' => 'Invalid Format, Image file only',
+			'picture.max' => 'File too large',
+			'background_picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+			'background_picture.image' => 'Invalid Format, Image file only',
+			'background_picture.max' => 'File too large',
 		];
 
 		$validator = Validator::make($request->all(), [
@@ -208,7 +208,7 @@ class ProductController extends Controller
 		});
 
 
-		return redirect()->route('backend.product')->with('berhasil', 'Berhasil Mengubah '.$request->name);
+		return redirect()->route('backend.product')->with('berhasil', 'Data Has Been Updated '.$request->name);
     }
 
     public function delete($id){
@@ -221,6 +221,6 @@ class ProductController extends Controller
 			$Product->delete();
 		});
 
-	    return redirect()->route('backend.product')->with('berhasil', 'Berhasil Menghapus '.$Product->name);
+	    return redirect()->route('backend.product')->with('berhasil', 'Data Has Been Deleted '.$Product->name);
     }
 }

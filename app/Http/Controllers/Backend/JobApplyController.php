@@ -10,7 +10,7 @@ use App\Models\JobApply;
 class JobApplyController extends Controller
 {
     function index(){
-    	$inbox = JobApply::get();
+    	$inbox = JobApply::orderBy('id', 'DESC')->get();
 
     	return view('backend.job-apply.index', compact('inbox'));
     }

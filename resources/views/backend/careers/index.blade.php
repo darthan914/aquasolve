@@ -40,9 +40,11 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Certification </h2>
+          <h2>Careers</h2>
           <ul class="nav panel_toolbox">
+            @if(Auth::user()->can('create-page'))
             <a href="{{ route('backend.careers.add') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add</a>
+            @endif
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -55,6 +57,7 @@
                 <th>Job Description</th>
                 <th>Responsibilities</th>
                 <th>Qualification</th>
+                <th>Created At</th>
                 <th>Tools</th>
               </tr>
             </thead>
@@ -88,6 +91,11 @@
                     </div>
                 </td>
                 <td>
+                    <div class="overflow">
+                      {!! $key->created_at !!}
+                    </div>
+                </td>
+                <td>
                   @if(Auth::user()->can('edit-page'))
                   <a href="{{ route('backend.careers.FP', ['id'=> $key->id]) }}">
                     <span class="label {{ $key->flug_publish == 'N' ? 'label-danger' : 'label-success'}}" data-toggle="tooltip" data-placement="left" title="Click to {{ $key->flug_publish == 'N' ? 'Publish' : 'Unpublish'}}">
@@ -104,7 +112,7 @@
                   
                   @if(Auth::user()->can('delete-page'))
                   <br>
-                  <a href="{{ route('backend.careers.delete', ['id'=> $key->id]) }}">
+                  <a href="{{ route('backend.careers.delete', ['id'=> $key->id]) }}" onclick="return confirm('Delete this data?');">
                     <span class="label label-danger" data-toggle="tooltip" data-placement="left" title="Click to Delete This Data">
                       <i class="fa fa-trash "></i> Delete
                     </span>

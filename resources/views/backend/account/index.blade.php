@@ -43,7 +43,7 @@
 				<form class="form-horizontal form-label-left" action="{{ route('backend.user.store') }}" method="post">
 					{{ csrf_field() }}
 					<div class="item form-group {{ $errors->has('new_name') ? 'has-error' : ''}}">
-						<label class="control-label col-md-2 col-sm-2 col-xs-12">Nama</label>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12">Name</label>
 						<div class="col-md-8 col-sm-8 col-xs-12">
 							<input id="new_name" type="text" name="new_name" value="{{ old('new_name') }}" class="form-control col-md-7 col-xs-12">
 							@if($errors->has('new_name'))
@@ -80,7 +80,7 @@
 					<form class="form-horizontal form-label-left" action="{{ route('backend.user.update') }}" method="post">
 						{{ csrf_field() }}
 						<div class="item form-group col-md-6 col-sm-12 col-xs-12 {{ $errors->has('name') ? 'has-error' : ''}}">
-							<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama</label>
+							<label class="control-label col-md-4 col-sm-4 col-xs-12">Name</label>
 							<div class="col-md-8 col-sm-8 col-xs-12">
 								<input id="name" type="text" name="name" value="{{ old('name',$me->name) }}" class="form-control col-md-7 col-xs-12">
 								@if($errors->has('name'))
@@ -137,7 +137,7 @@
 					<form class="form-horizontal form-label-left" action="{{ route('backend.user.update') }}" method="post">
 						{{ csrf_field() }}
 						<div class="item form-group col-md-6 col-sm-12 col-xs-12 {{ $errors->has('name') ? 'has-error' : ''}}">
-							<label class="control-label col-md-4 col-sm-4 col-xs-12">Nama</label>
+							<label class="control-label col-md-4 col-sm-4 col-xs-12">Name</label>
 							<div class="col-md-8 col-sm-8 col-xs-12">
 								<input id="name" type="text" name="name" value="{{ old('name',$me->name) }}" class="form-control col-md-7 col-xs-12">
 								@if($errors->has('name'))
@@ -196,8 +196,9 @@
 					<thead>
 						<tr role="row">
 							<th>No</th>
-							<th>Nama</th>
+							<th>Name</th>
 							<th>Email</th>
+							<th>Level</th>
 							<th>Login Count</th>
 							<th>Tools</th>
 						</tr>
@@ -211,9 +212,10 @@
 							<td>{{ $no++ }}</td>
 							<td>{{ $key->name }}</td>
 							<td>{{ $key->email }}</td>
+							<td>{{ $key->level }}</td>
 							<td>{{ $key->login_count }}</td>
 							<td>
-								@if(Auth::user()->can('access-user'))
+								@if(Auth::user()->can('access-user') && Auth::user()->level >= $key->level)
 									<a href="{{ route('backend.user.permission', ['id'=> $key->id]) }}">
 										<span class="label label-default" data-toggle="tooltip" data-placement="left" title="Click to Set Permission">
 											<i class="fa fa-key "></i> Permission
@@ -223,7 +225,7 @@
 
 								
 								@if($key->id != Auth::user()->id)
-									@if(Auth::user()->can('active-user'))
+									@if(Auth::user()->can('active-user') && Auth::user()->level >= $key->level)
 									<br>
 									<a href="{{ route('backend.user.status', ['id'=> $key->id]) }}">
 										<span class="label {{ $key->status == 'N' ? 'label-danger' : 'label-success'}}" data-toggle="tooltip" data-placement="left" title="Click to {{ $key->status == 'N' ? 'Publish' : 'Unpublish'}}">
@@ -231,17 +233,17 @@
 										</span>
 									</a>
 									@endif
-									@if(Auth::user()->can('edit-user'))
+									@if(Auth::user()->can('edit-user') && Auth::user()->level >= $key->level)
 									<br>
-									<a href="{{ route('backend.user.resetpassword', ['id'=> $key->id]) }}">
+									<a href="{{ route('backend.user.resetpassword', ['id'=> $key->id]) }}" onclick="return confirm('Reset Password?');">
 										<span class="label label-danger" data-toggle="tooltip" data-placement="left" title="Click to Reset Password For This Data">
 											<i class="fa fa-recycle "></i> Reset Password
 										</span>
 									</a>
 									@endif
-									@if(Auth::user()->can('delete-user'))
+									@if(Auth::user()->can('delete-user') && Auth::user()->level >= $key->level)
 									<br>
-									<a href="{{ route('backend.user.delete', ['id'=> $key->id]) }}">
+									<a href="{{ route('backend.user.delete', ['id'=> $key->id]) }}" onclick="return confirm('Delete this data?');">
 										<span class="label label-danger" data-toggle="tooltip" data-placement="left" title="Click to Delete This Data">
 											<i class="fa fa-trash "></i> Delete
 										</span>

@@ -155,6 +155,12 @@
 									type="file" 
 									name="file"
 								>
+
+								@if($errors->has('g-recaptcha-response'))
+								<span>{{ $errors->first('g-recaptcha-response')}}</span>
+								@endif
+								<div class="g-recaptcha" data-sitekey="6Lcjt2gUAAAAAOXlhFmH-J-bYDB_68rV7COyA0Xt"></div>
+
 								<button id="submit" type="submit">SUBMIT</button>
 
 						    </form>
@@ -167,10 +173,14 @@
 @endsection
 
 @section('script')
+<script src='https://www.google.com/recaptcha/api.js'></script>
 	<script type="text/javascript">
-		$(".triger-togle").click(function(){
-			var triger = $(this).data("togle");
-		    $("#"+triger).toggleClass("un-active");
+		$(function() {
+			$(".triger-togle").click(function(){
+				var triger = $(this).data("togle");
+			    $("#"+triger).toggleClass("un-active");
+			});
 		});
+		
 	</script>
 @endsection

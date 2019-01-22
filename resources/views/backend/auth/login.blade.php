@@ -61,6 +61,11 @@
                   <button class="btn btn-primary btn-block btn-flat">Log In</button>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-xs-12 text-center">
+                  <a href="{{ route('resetForm') }}">Forgot Password</a>
+                </div>
+              </div>
 
               <div class="clearfix"></div>
 

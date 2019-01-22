@@ -70,8 +70,8 @@
 
             <div class="form-group">
               <div class="col-md-6 col-md-offset-3">
-                <a href="{{ route('backend.general-config') }}" class="btn btn-primary">Batal</a>
-                <button id="send" type="submit" class="btn btn-success">Ubah</button>
+                <a href="{{ route('backend.general-config') }}" class="btn btn-primary">Cancel</a>
+                <button id="send" type="submit" class="btn btn-success">Update</button>
               </div>
             </div>
           </form>

@@ -70,6 +70,9 @@
                                     <th>
                                         File Attachment
                                     </th>
+                                    <th>
+                                        Datetime
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,6 +101,9 @@
                                     </td>
                                     <td>
                                         <a href="{{ asset($key->file) }}"><i class="fa fa-download"></i></a>
+                                    </td>
+                                    <td>
+                                        {{ date('d/m/Y H:i:s', strtotime($key->created_at)) }}
                                     </td>
                                 </tr>
                                 @endforeach

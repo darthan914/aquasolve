@@ -39,7 +39,7 @@
           <div class="modal-body">
             {{ csrf_field() }}
             <div class="item form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12">Gambar Max 700x700</label>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Picture (Suggested Size 600x329)</label>
               <div class="col-md-9 col-sm-9 col-xs-12">
                 <input class="form-control col-md-7 col-xs-12" name="picture" type="file" accept=".jpg,.png">
                 @if($errors->has('picture'))
@@ -81,7 +81,7 @@
             {{ csrf_field() }}
             <img id="picture" src="" style="width: 100%;">
             <div class="item form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12">Gambar Max 700x700</label>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Picture (Suggested Size 600x329)</label>
               <div class="col-md-9 col-sm-9 col-xs-12">
                 <input id="id" name="id" type="hidden" value="">
                 <input class="form-control col-md-7 col-xs-12" name="picture" type="file" accept=".jpg,.png">
@@ -118,7 +118,9 @@
         <div class="x_title">
           <h2>Solutions </h2>
           <ul class="nav panel_toolbox">
+            @if(Auth::user()->can('create-page'))
             <a class="btn btn-success btn-sm" data-toggle='modal' data-target='.modal-form-add'><i class="fa fa-plus"></i> Add</a>
+            @endif
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -170,7 +172,7 @@
                   @endif
                   @if(Auth::user()->can('delete-page'))
                   <br>
-                  <a href="{{ route('backend.solutions.delete', ['id'=> $key->id]) }}">
+                  <a href="{{ route('backend.solutions.delete', ['id'=> $key->id]) }}" onclick="return confirm('Delete this data?');">
                     <span class="label label-danger" data-toggle="tooltip" data-placement="left" title="Click to Delete This Data">
                       <i class="fa fa-trash "></i> Delete
                     </span>

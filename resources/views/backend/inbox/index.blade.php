@@ -44,6 +44,7 @@
                 <th>Email</th>
                 <th>Subject</th>
                 <th>Message</th>
+                <th>Datetime</th>
               </tr>
             </thead>
             <tbody>
@@ -57,6 +58,7 @@
                 <td>{{ $key->email }}</td>
                 <td>{{ $key->subyek }}</td>
                 <td>{{ $key->message }}</td>
+                <td>{{ date('d/m/Y H:i:s', strtotime($key->created_at)) }}</td>
               </tr>
             @endforeach
             </tbody>

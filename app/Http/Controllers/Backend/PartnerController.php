@@ -29,13 +29,13 @@ class PartnerController extends Controller
 
 	public function store(Request $request){
 		$message = [
-			'name.required' => 'Wajib di isi',
+			'name.required' => 'This Field Required',
 			'name.unique' => 'Partner Sudah Ada',
-			'img_url.required' => 'Wajib di isi',
-			'img_url.image' => 'Format Gambar Tidak Sesuai',
-			'img_url.max' => 'File Size Terlalu Besar',
+			'img_url.required' => 'This Field Required',
+			'img_url.image' => 'Invalid Format, Image file only',
+			'img_url.max' => 'File too large',
 			'img_url.dimensions' => 'Ukuran Tinggi Maksimal 60px',
-			'img_alt.required' => 'Wajib di isi',
+			'img_alt.required' => 'This Field Required',
 			'link_url.url' => 'Format url tidak sesuai'
 		];
 
@@ -86,7 +86,7 @@ class PartnerController extends Controller
 		// $log->aksi = 'Menambahkan Partner '.$request->nama_Partner;
 		// $log->save();
 
-		return redirect()->route('backend.partner')->with('berhasil', 'Berhasil Menambahkan Partner '.$request->name);
+		return redirect()->route('backend.partner')->with('berhasil', 'Data Has Been Addedkan Partner '.$request->name);
 	}
 
 	public function ubah($id){
@@ -101,12 +101,12 @@ class PartnerController extends Controller
 
 	public function edit(Request $request){
 		$message = [
-			'name.required' => 'Wajib di isi',
+			'name.required' => 'This Field Required',
 			'name.unique' => 'Social Media ini sudah ada',
-			'img_url.image' => 'Format Gambar Tidak Sesuai',
-			'img_url.max' => 'File Size Terlalu Besar',
+			'img_url.image' => 'Invalid Format, Image file only',
+			'img_url.max' => 'File too large',
 			'img_url.dimensions' => 'Ukuran Tinggi Maksimal 60px',
-			'img_alt.required' => 'Wajib di isi',
+			'img_alt.required' => 'This Field Required',
 			'link_url.url' => 'Format url tidak sesuai',
 		];
 
@@ -164,7 +164,7 @@ class PartnerController extends Controller
 
 		});
 
-		return redirect()->route('backend.partner')->with('berhasil', 'Berhasil Mengubah Partner '.$request->name);
+		return redirect()->route('backend.partner')->with('berhasil', 'Data Has Been Updated Partner '.$request->name);
 	}
 
 	public function flagPublish($id){

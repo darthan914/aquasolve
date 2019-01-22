@@ -24,21 +24,21 @@ class CareersController extends Controller
 
     public function addStore(request $request){
     	$message = [
-        'name.required' => 'Wajib di isi',
-        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'job_type.required' => 'Wajib di isi',
-        'job_type.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'location.required' => 'Wajib di isi',
-        'location.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'contract.required' => 'Wajib di isi',
-        'contract.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'vacancy.required' => 'Wajib di isi',
-        'vacancy.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'job_description.required' => 'Wajib di isi',
+        'name.required' => 'This Field Required',
+        'name.max' => 'Max Character 35',
+        'job_type.required' => 'This Field Required',
+        'job_type.max' => 'Max Character 35',
+        'location.required' => 'This Field Required',
+        'location.max' => 'Max Character 35',
+        'contract.required' => 'This Field Required',
+        'contract.max' => 'Max Character 35',
+        'vacancy.required' => 'This Field Required',
+        'vacancy.max' => 'Max Character 35',
+        'job_description.required' => 'This Field Required',
         'job_description.max' => 'Terlalu Panjang, Maks 1500 Karakter',
-        'responsibilities.required' => 'Wajib di isi',
+        'responsibilities.required' => 'This Field Required',
         'responsibilities.max' => 'Terlalu Panjang, Maks 1500 Karakter',
-        'qualifications.required' => 'Wajib di isi',
+        'qualifications.required' => 'This Field Required',
         'qualifications.max' => 'Terlalu Panjang, Maks 1500 Karakter',
 
       ];
@@ -74,7 +74,7 @@ class CareersController extends Controller
       });
 
 
-      return redirect()->route('backend.careers')->with('berhasil', 'Berhasil Menambah '.$request->name);
+      return redirect()->route('backend.careers')->with('berhasil', 'Data Has Been Added '.$request->name);
     }
 
     public function flagPublish($id){
@@ -86,7 +86,7 @@ class CareersController extends Controller
   			$Careers->flug_publish = 'N';
   		}
   		$Careers->save();
-	    return redirect()->route('backend.careers')->with('berhasil', 'Berhasil Mengubah '.$Careers->name);
+	    return redirect()->route('backend.careers')->with('berhasil', 'Data Has Been Updated '.$Careers->name);
     }
 
     public function change($id){
@@ -95,21 +95,21 @@ class CareersController extends Controller
     }
     public function changeStore(request $request,$id){
     	$message = [
-        'name.required' => 'Wajib di isi',
-        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'job_type.required' => 'Wajib di isi',
-        'job_type.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'location.required' => 'Wajib di isi',
-        'location.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'contract.required' => 'Wajib di isi',
-        'contract.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'vacancy.required' => 'Wajib di isi',
-        'vacancy.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'job_description.required' => 'Wajib di isi',
+        'name.required' => 'This Field Required',
+        'name.max' => 'Max Character 35',
+        'job_type.required' => 'This Field Required',
+        'job_type.max' => 'Max Character 35',
+        'location.required' => 'This Field Required',
+        'location.max' => 'Max Character 35',
+        'contract.required' => 'This Field Required',
+        'contract.max' => 'Max Character 35',
+        'vacancy.required' => 'This Field Required',
+        'vacancy.max' => 'Max Character 35',
+        'job_description.required' => 'This Field Required',
         'job_description.max' => 'Terlalu Panjang, Maks 1500 Karakter',
-        'responsibilities.required' => 'Wajib di isi',
+        'responsibilities.required' => 'This Field Required',
         'responsibilities.max' => 'Terlalu Panjang, Maks 1500 Karakter',
-        'qualifications.required' => 'Wajib di isi',
+        'qualifications.required' => 'This Field Required',
         'qualifications.max' => 'Terlalu Panjang, Maks 1500 Karakter',
 
       ];
@@ -146,7 +146,7 @@ class CareersController extends Controller
       });
 
 
-      return redirect()->route('backend.careers')->with('berhasil', 'Berhasil Mengubah '.$request->name);
+      return redirect()->route('backend.careers')->with('berhasil', 'Data Has Been Updated '.$request->name);
     }
 
     public function delete($id){
@@ -156,6 +156,6 @@ class CareersController extends Controller
 			$Careers->delete();
 		});
 
-	    return redirect()->route('backend.careers')->with('berhasil', 'Berhasil Menghapus '.$Careers->name);
+	    return redirect()->route('backend.careers')->with('berhasil', 'Data Has Been Deleted '.$Careers->name);
     }
 }

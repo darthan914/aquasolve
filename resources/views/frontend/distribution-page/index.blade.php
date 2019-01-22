@@ -189,7 +189,7 @@
 @section('body')
 	<div id="distribution">
 		<div id="wrapper">
-			<h1>DISRIBUTION</h1>
+			<h1>DISTRIBUTION</h1>
 			<div id="maps-wrapper">
 				<div id="map" class="map-relative">
 					<img src="{{ asset('amadeo/images/'.$distribution->picture) }}">

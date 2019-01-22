@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'support@digindo.co.id'),
-        'name' => env('MAIL_FROM_NAME', 'Demo'),
+        'address' => env('MAIL_FROM_ADDRESS', 'amadeo.smtp@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Admin Amadeo'),
     ],
 
     /*

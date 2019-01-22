@@ -34,7 +34,7 @@
                         <a href="{{ route('backend.dashboard') }}">
                             <i class="fa fa-home">
                             </i>
-                            Dashbor
+                            Dashboard
                         </a>
                     </li>
                     <li class="{{ Route::is('backend.user.*') ? 'active' : '' }}">

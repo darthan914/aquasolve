@@ -23,6 +23,7 @@
 				</label>
 				<div class="col-md-9 col-sm-9 col-xs-12">
 					@foreach($list['data'] as $list2)
+					@if($list2['value'] == 'level-user' && !Auth::user()->can('level-user')) @continue @endif
 					<label class="checkbox-inline"><input type="checkbox" name="permission[]" class="permission-{{ $list['id'] }}" value="{{ $list2['value'] }}" @if(in_array($list2['value'], old('permission', explode(', ', $index->permission)))) checked @endif>{{ $list2['name'] }}</label>
 					@endforeach
 					<ul class="parsley-errors-list filled">
@@ -31,6 +32,19 @@
 				</div>
 			</div>
 		@endforeach
+
+		@can('level-user')
+		<div class="form-group">
+			<label for="level" class="control-label col-md-3 col-sm-3 col-xs-12">Level<span class="required">*</span>
+			</label>
+			<div class="col-md-9 col-sm-9 col-xs-12">
+				<input type="text" id="level" name="level" class="form-control {{$errors->first('level') != '' ? 'parsley-error' : ''}}" value="{{ old('level', $index->level) }}">
+				<ul class="parsley-errors-list filled">
+					<li class="parsley-required">{{ $errors->first('level') }}</li>
+				</ul>
+			</div>
+		</div>
+		@endcan
 
 		<div class="form-group">
 			<label for="password" class="control-label col-md-3 col-sm-3 col-xs-12">Password User<span class="required">*</span>

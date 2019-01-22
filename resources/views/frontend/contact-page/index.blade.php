@@ -12,6 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('amadeo/css/contact.css') }}">
 @endsection
 
+@section('script')
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
+
 @section('body')
 	<div id="maps">
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.4499759798864!2d106.6807423143141!3d-6.335711195414965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e504a69b23ab%3A0x3a02d749206e7d74!2sPT+Aquasolve+Sanaria!5e0!3m2!1sid!2sid!4v1509421865830" width="100%" height="575" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -84,6 +88,12 @@
 							placeholder="Type your message here*"
 							rows="2" 
 						>{{ old('message') }}</textarea>
+
+						@if($errors->has('g-recaptcha-response'))
+							<span>{{ $errors->first('g-recaptcha-response')}}</span>
+						@endif
+						<div class="g-recaptcha" data-sitekey="6Lcjt2gUAAAAAOXlhFmH-J-bYDB_68rV7COyA0Xt"></div>
+
 						<button id="submit" type="submit">SUBMIT</button>
 
 				    </form>

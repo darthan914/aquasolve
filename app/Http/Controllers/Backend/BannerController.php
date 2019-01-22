@@ -22,14 +22,14 @@ class BannerController extends Controller
 
     public function store(request $request){
       $message = [
-        // 'title.required' => 'Wajib di isi',
-        // 'title.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        // 'descript.required' => 'Wajib di isi',
-        // 'descript.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'picture.required' => 'Wajib di isi',
-        'picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-        'picture.image' => 'Format Gambar Tidak Sesuai',
-        'picture.max' => 'File Size Terlalu Besar',
+        // 'title.required' => 'This Field Required',
+        // 'title.max' => 'Max Character 35',
+        // 'descript.required' => 'This Field Required',
+        // 'descript.max' => 'Max Character 35',
+        'picture.required' => 'This Field Required',
+        'picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+        'picture.image' => 'Invalid Format, Image file only',
+        'picture.max' => 'File too large',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -69,19 +69,19 @@ class BannerController extends Controller
       });
 
 
-      return redirect()->route('backend.banner')->with('berhasil', 'Berhasil Menambah '.$request->title);
+      return redirect()->route('backend.banner')->with('berhasil', 'Data Has Been Added '.$request->title);
     }
 
     public function change(request $request){
       $message = [
-        // 'title.required' => 'Wajib di isi',
+        // 'title.required' => 'This Field Required',
         // 'title.max' => 'Terlalu Panjang, Maks 25 Karakter',
         // 'title.unique' => 'Produk ini sudah ada',
-        // 'descript.required' => 'Wajib di isi',
-        // 'descript.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-        'picture.image' => 'Format Gambar Tidak Sesuai',
-        'picture.max' => 'File Size Terlalu Besar',
+        // 'descript.required' => 'This Field Required',
+        // 'descript.max' => 'Max Character 35',
+        'picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+        'picture.image' => 'Invalid Format, Image file only',
+        'picture.max' => 'File too large',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -125,7 +125,7 @@ class BannerController extends Controller
       });
 
 
-      return redirect()->route('backend.banner')->with('berhasil', 'Berhasil Mengubah '.$request->title);
+      return redirect()->route('backend.banner')->with('berhasil', 'Data Has Been Updated '.$request->title);
     }
 
     public function flagPublish($id){
@@ -137,7 +137,7 @@ class BannerController extends Controller
         $Banner->flug_publish = 'N';
       }
       $Banner->save();
-      return redirect()->route('backend.banner')->with('berhasil', 'Berhasil Mengubah '.$Banner->title);
+      return redirect()->route('backend.banner')->with('berhasil', 'Data Has Been Updated '.$Banner->title);
     }
 
     public function delete($id){
@@ -148,6 +148,6 @@ class BannerController extends Controller
       $Banner->delete();
     });
 
-      return redirect()->route('backend.banner')->with('berhasil', 'Berhasil Menghapus '.$Banner->title);
+      return redirect()->route('backend.banner')->with('berhasil', 'Data Has Been Deleted '.$Banner->title);
     }
 }

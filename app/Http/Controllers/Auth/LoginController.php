@@ -12,6 +12,8 @@ use App\Models\Users;
 
 use Validator;
 use Auth;
+use Hash;
+use Mail;
 
 class LoginController extends Controller
 {
@@ -85,4 +87,36 @@ class LoginController extends Controller
             return redirect()->route('loginForm')->with('status', 'Your account is not active or wrong password')->withInput();
         }
     }
+
+    public function showResetForm()
+    {
+      return view('backend.auth.reset');
+    }
+
+    public function reset(Request $request)
+    {
+        $user = Users::where('email', $request->email)->first();
+
+        if (!$user) {
+            return redirect()->route('resetForm')->with('status', 'Email Not Exist');
+        }
+
+        $new_password = str_random(40);
+
+        $user->password = Hash::make($new_password);
+        $user->save();
+
+        $data = array([
+            'name'     => $user->name,
+            'email'    => $user->email,
+            'password' => $new_password,
+        ]);
+
+        Mail::send('backend.email.reset', ['data' => $data], function ($message) use ($data) {
+            $message->to($data[0]['email'], $data[0]['name'])->subject('Reset Password CMS Aquasolve');
+        });
+
+        return redirect()->route('loginForm')->with('status', 'Your new password has been sent to ' . $user->email);
+    }
+
 }

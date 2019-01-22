@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
             view()->share('name', $name);
         // name
             
-        if(!Request::is('admin/*')){
+        if(!Request::is('admin/*') || Request::is('admin/news/*')){
             // logo
                 $logo = GeneralConfig::find(2);
                 view()->share('logo', $logo);

@@ -5,19 +5,19 @@
 @endsection
 
 @section('meta')
-	<meta name="title" content="{{ $name->title }} | {{$News->name}}">
+	<meta name="title" content="{{ $News->meta_title ?? $name->title.' | '.$News->name}}">
 
-	<meta name="description" content="{{ $name->title }} | {{ strip_tags(Illuminate\Support\Str::words($News->descript, 35)) }}">
+	<meta name="description" content="{{ $News->meta_description ?? $name->title .' | '. strip_tags(Illuminate\Support\Str::words($News->descript, 35)) }}">
 	
-	<meta itemprop="thumbnailUrl" content="{{ asset('amadeo/images/'.$News->picture) }}"/>
-	<meta itemprop="image" content="{{ asset('amadeo/images/'.$News->picture) }}" />
+	<meta itemprop="thumbnailUrl" content="{{ $News->meta_image ? asset('amadeo/images/'.$News->meta_image) : asset('amadeo/images/'.$News->picture) }}"/>
+	<meta itemprop="image" content="{{ $News->meta_image ? asset('amadeo/images/'.$News->meta_image) : asset('amadeo/images/'.$News->picture) }}" />
 
 	<meta property="og:type" content="News" />
 	<meta property="og:site_name" content="aquasolve.co.id">
 	<meta property="og:title" content="{{ $News->name }}">
-	<meta property="og:url" content="{{ route('frontend.news.view', ['slug'=>$News->slug]) }}">
-	<meta property="og:description" content="{{ strip_tags(Illuminate\Support\Str::words($News->descript, 35)) }}">
-	<meta property="og:image" content="{{ asset('amadeo/images/'.$News->picture) }}">
+	<meta property="og:url" content="{{ $News->meta_url ?? route('frontend.news.view', ['slug'=>$News->slug]) }}">
+	<meta property="og:description" content="{{ $News->meta_description ?? strip_tags(Illuminate\Support\Str::words($News->descript, 35)) }}">
+	<meta property="og:image" content="{{ $News->meta_image ? asset('amadeo/images/'.$News->meta_image) : asset('amadeo/images/'.$News->picture) }}">
 @endsection
 
 @section('style')
@@ -133,10 +133,10 @@
 				{!! $News->descript !!}
 				<p>Share On:</p>
 				<p id="shareon">
-					<a href="{{ Share::load(Request::fullUrl())->facebook() }}" target="_blank">
+					<a href="https://www.facebook.com/sharer/sharer.php?u={{ Request::fullUrl() }}" target="_blank">
 						<img src="{{ asset('amadeo/images-base/facebook.png') }}">
 					</a>
-					<a href="{{ Share::load(Request::fullUrl())->twitter() }}" target="_blank">
+					<a href="https://twitter.com/home?status={{ Request::fullUrl() }}" target="_blank">
 						<img src="{{ asset('amadeo/images-base/twitter.png') }}">
 					</a>
 				</p>

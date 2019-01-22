@@ -23,9 +23,9 @@ class SolutionsCategoryController extends Controller
 
     public function store(request $request){
       $message = [
-        'name.required' => 'Wajib di isi',
+        'name.required' => 'This Field Required',
 		'name.unique' => 'Category Sudah Ada',
-        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
+        'name.max' => 'Max Character 35',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -45,13 +45,13 @@ class SolutionsCategoryController extends Controller
       });
 
 
-      return redirect()->route('backend.solutions-category')->with('berhasil', 'Berhasil Menambah ');
+      return redirect()->route('backend.solutions-category')->with('berhasil', 'Data Has Been Added ');
     }
 
     public function change(request $request){
       $message = [
-        'name.required' => 'Wajib di isi',
-        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
+        'name.required' => 'This Field Required',
+        'name.max' => 'Max Character 35',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -72,7 +72,7 @@ class SolutionsCategoryController extends Controller
       });
 
 
-      return redirect()->route('backend.solutions-category')->with('berhasil', 'Berhasil Mengubah '.$request->name);
+      return redirect()->route('backend.solutions-category')->with('berhasil', 'Data Has Been Updated '.$request->name);
     }
 
     public function flagPublish($id){
@@ -84,7 +84,7 @@ class SolutionsCategoryController extends Controller
   			$SolutionsCategory->flug_publish = 'N';
   		}
   		$SolutionsCategory->save();
-	    return redirect()->route('backend.solutions-category')->with('berhasil', 'Berhasil Mengubah ');
+	    return redirect()->route('backend.solutions-category')->with('berhasil', 'Data Has Been Updated ');
     }
 
     public function delete($id){
@@ -101,6 +101,6 @@ class SolutionsCategoryController extends Controller
 			$SolutionsCategory->delete();
 		});
 
-	    return redirect()->route('backend.solutions-category')->with('berhasil', 'Berhasil Menghapus ');
+	    return redirect()->route('backend.solutions-category')->with('berhasil', 'Data Has Been Deleted ');
     }
 }

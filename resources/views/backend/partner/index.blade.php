@@ -38,8 +38,8 @@
         <h4 class="modal-title" id="myModalLabel2">Unpublish Partner</h4>
       </div>
       <div class="modal-body">
-        <h4>Yakin ?</h4>
-        <p>Tidak akan menampilkan Partner</p>
+        <h4>Are you sure ?</h4>
+        <p>Partner will not publish in website</p>
       </div>
       <div class="modal-footer">
         <a class="btn btn-primary" id="setUnpublish">Ya</a>
@@ -59,10 +59,10 @@
         <h4 class="modal-title" id="myModalLabel2">Publish Partner</h4>
       </div>
       <div class="modal-body">
-        <h4>Yakin ?</h4>
+        <h4>Are you sure ?</h4>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" id="setPublish">Ya</a>
+        <a class="btn btn-primary" id="setPublish">Yes</a>
       </div>
 
     </div>
@@ -77,13 +77,13 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel2">Hapus Partner</h4>
+        <h4 class="modal-title" id="myModalLabel2">Delete Partner</h4>
       </div>
       <div class="modal-body">
-        <h4>Yakin Hapus?</h4>
+        <h4>Are you sure?</h4>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" id="setHapus">Hapus</a>
+        <a class="btn btn-primary" id="setHapus">Delete</a>
       </div>
 
     </div>
@@ -104,7 +104,9 @@
       <div class="x_title">
         <h2>Partner </h2>
         <ul class="nav panel_toolbox">
-          <a href="{{ route('backend.partner.tambah') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah</a>
+          @if(Auth::user()->can('create-page'))
+          <a href="{{ route('backend.partner.tambah') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add</a>
+          @endif
         </ul>
         <div class="clearfix"></div>
       </div>
@@ -120,7 +122,7 @@
               <th>Buy Now!!</th>
               --}}
               <th>Publish</th>
-              <th>Aksi</th>
+              <th>Tools</th>
             </tr>
           </thead>
           <tbody>
@@ -152,10 +154,10 @@
               </td>
               <td>
                 @if(Auth::user()->can('edit-page'))
-                <a href="{{ route('backend.partner.update', $key->id) }}" class="btn btn-xs btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Ubah"><i class="fa fa-pencil"></i> </a>
+                <a href="{{ route('backend.partner.update', $key->id) }}" class="btn btn-xs btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Update"><i class="fa fa-pencil"></i> </a>
                 @endif
                 @if(Auth::user()->can('delete-page'))
-                <a href="" class="hapus" data-value="{{ $key->id }}" data-toggle="modal" data-target=".modal-hapus"><span class="btn btn-xs btn-danger delete" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="fa fa-close"></i> </span></a>
+                <a href="" class="hapus" data-value="{{ $key->id }}" data-toggle="modal" data-target=".modal-hapus"><span class="btn btn-xs btn-danger delete" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-close"></i> </span></a>
                 @endif
               </td>
             </tr>

@@ -22,9 +22,9 @@ class ProductCategoryController extends Controller
 
     public function store(request $request){
       $message = [
-        'name.required' => 'Wajib di isi',
+        'name.required' => 'This Field Required',
     		'name.unique' => 'Category Sudah Ada',
-        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
+        'name.max' => 'Max Character 35',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -46,14 +46,14 @@ class ProductCategoryController extends Controller
       });
 
 
-      return redirect()->route('backend.category-product')->with('berhasil', 'Berhasil Menambah '.$request->name);
+      return redirect()->route('backend.category-product')->with('berhasil', 'Data Has Been Added '.$request->name);
     }
 
     public function change(request $request){
       $message = [
-        'name.required' => 'Wajib di isi',
+        'name.required' => 'This Field Required',
         'name.unique' => 'Category Sudah Ada',
-        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
+        'name.max' => 'Max Character 35',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -75,7 +75,7 @@ class ProductCategoryController extends Controller
       });
 
 
-      return redirect()->route('backend.category-product')->with('berhasil', 'Berhasil Mengubah '.$request->name);
+      return redirect()->route('backend.category-product')->with('berhasil', 'Data Has Been Updated '.$request->name);
     }
 
     public function flagPublish($id){
@@ -87,7 +87,7 @@ class ProductCategoryController extends Controller
         $ProdukCategory->flug_publish = 'N';
       }
       $ProdukCategory->save();
-      return redirect()->route('backend.category-product')->with('berhasil', 'Berhasil Mengubah '.$ProdukCategory->title);
+      return redirect()->route('backend.category-product')->with('berhasil', 'Data Has Been Updated '.$ProdukCategory->title);
     }
 
     public function delete($id){
@@ -107,6 +107,6 @@ class ProductCategoryController extends Controller
 			$ProdukCategory->delete();
 		});
 
-		return redirect()->route('backend.category-product')->with('berhasil', 'Berhasil Menghapus '.$ProdukCategory->title);
+		return redirect()->route('backend.category-product')->with('berhasil', 'Data Has Been Deleted '.$ProdukCategory->title);
     }
 }

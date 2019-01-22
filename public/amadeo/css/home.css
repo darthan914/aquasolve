@@ -178,6 +178,7 @@
 	#hot-area .item:nth-child(odd) #midle #contain{
 		float: left;
 		padding-left: 7.5%;
+		padding-right: 7.5%;
 	}
 	#hot-area .item:nth-child(odd) #midle #contain:after{
 		left: 100%;
@@ -189,13 +190,14 @@
 		position: absolute;
 		pointer-events: none;
 		border-color: rgba(101,100,106, 0);
-		border-left-color: rgb(101,100,106);
-		border-bottom-color: rgb(101,100,106);
+		/*border-left-color: rgb(101,100,106);*/
+		/*border-bottom-color: rgb(101,100,106);*/
 		border-width: 165px;
 		margin-left: 0%;
 	}
 	#hot-area .item:nth-child(even) #midle #contain{
 		float: right;
+		padding-left: 7.5%;
 		padding-right: 7.5%;
 	}
 	#hot-area .item:nth-child(even) #midle #contain:before{
@@ -208,8 +210,8 @@
 		position: absolute;
 		pointer-events: none;
 		border-color: rgba(101,100,106, 0);
-		border-right-color: rgb(101,100,106);
-		border-bottom-color: rgb(101,100,106);
+		/*border-right-color: rgb(101,100,106);*/
+		/*border-bottom-color: rgb(101,100,106);*/
 		border-width: 165px;
 		margin-right: 0%;
 	}

@@ -7,7 +7,24 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function levelgrant($id_user)
+    {
+        $user = User::find($id_user);
+
+        if($user->level <= Auth::user()->level)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

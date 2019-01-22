@@ -62,6 +62,10 @@ class Users extends Authenticatable
                         'name' => 'Access',
                         'value' => 'access-user'
                     ],
+                    [
+                        'name' => 'Level',
+                        'value' => 'level-user'
+                    ],
                 ]
             ],
             // accessInbox

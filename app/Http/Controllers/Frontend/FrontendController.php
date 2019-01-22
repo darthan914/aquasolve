@@ -8,19 +8,18 @@ use App\Models\Careers;
 use App\Models\Certification;
 use App\Models\GeneralConfig;
 use App\Models\Inbox;
+use App\Models\JobApply;
 use App\Models\News;
 use App\Models\Overseas;
 use App\Models\Partner;
 use App\Models\ProdukCategory;
 use App\Models\SolutionsCategory;
 use App\Models\SolutionsImg;
-use App\Models\JobApply;
 use DB;
 use File;
 use Illuminate\Http\Request;
-use Validator;
-
 use Mail;
+use Validator;
 
 class FrontendController extends Controller
 {
@@ -70,7 +69,7 @@ class FrontendController extends Controller
             'message.required' => 'required',
             'message.min'      => 'to short',
             'message.max'      => 'to long',
-            // 'g-recaptcha-response.required'  => 'required',
+            'g-recaptcha-response.required'  => 'required',
         ];
 
         $validator = Validator::make($request->all(), [
@@ -78,7 +77,7 @@ class FrontendController extends Controller
             'email'   => 'required|email',
             'subject' => 'required|min:3',
             'message' => 'required|min:10|max:580',
-            // 'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ], $message);
 
         if ($validator->fails()) {
@@ -108,27 +107,32 @@ class FrontendController extends Controller
 
         DB::transaction(function () use ($request) {
 
-            $save          = new Inbox;
-            $save->name    = $request->name;
-            $save->email   = $request->email;
-            $save->subyek  = $request->subject;
-            $save->message = $request->message;
-            $save->save();
+            $index          = new Inbox;
+            $index->name    = $request->name;
+            $index->email   = $request->email;
+            $index->subyek  = $request->subject;
+            $index->message = $request->message;
+            $index->save();
 
-            //     $getSendTo = General::first();
+            $email = GeneralConfig::firstOrCreate(['name' => 'send-contact-to'], ['content' => 'jonathan.digindo@gmail.com', 'description' => 'email forward bila lebih dari satu email, pisahkan dengan titik koma(;)']);
 
-            //     try {
-            //       Mail::send('frontend.kontak-page.mail', ['request' => $request], function($message) use ($request, $getSendTo) {
-            //         $message->from('administrator@pancalogam.com', 'Administrator')
-            //                 ->to($getSendTo->email_to);
-            //         if ($getSendTo->email_cc != null) {
-            //                 $message->cc($getSendTo->email_cc);
-            //         }
-            //                 $message->subject('New Inbox From : '.$request->email);
-            //       });
-            //     } catch (\Exception $e) {
-            //       // dd($e);
-            //     }
+            $email_forward = explode(';', str_replace(' ', '', $email->content));
+
+            // try {
+                $data = array(
+                    'name'        => $request->name,
+                    'email'       => $request->email,
+                    'bodyMessage' => $request->message,
+                );
+
+                Mail::send('frontend.emails.contact', $data, function ($message) use ($request, $email_forward) {
+                    // $message->from($request->email);
+                    $message->to($email_forward);
+                    $message->subject('New Contact From ' . $request->email);
+                });
+            // } catch (\Exception $e) {
+                // dd($e);
+            // }
         });
 
         return redirect()
@@ -197,20 +201,20 @@ class FrontendController extends Controller
     public function careersStore(Request $request)
     {
         $message = [
-            'name.required'    => 'required',
-            'name.min'         => 'to short',
-            'email.required'   => 'required',
-            'email.email'      => 'format email salah',
-            'telp.required'    => 'required',
-            'telp.min'         => 'to short',
-            'position.required'    => 'required',
-            'position.min'         => 'to short',
-            'message.required' => 'required',
-            'message.min'      => 'to short',
-            'message.max'      => 'to long',
-            'file.required'    => 'required',
-            'file.max'         => 'Max 5 MB',
-            // 'g-recaptcha-response.required'  => 'required',
+            'name.required'     => 'required',
+            'name.min'          => 'to short',
+            'email.required'    => 'required',
+            'email.email'       => 'format email salah',
+            'telp.required'     => 'required',
+            'telp.min'          => 'to short',
+            'position.required' => 'required',
+            'position.min'      => 'to short',
+            'message.required'  => 'required',
+            'message.min'       => 'to short',
+            'message.max'       => 'to long',
+            'file.required'     => 'required',
+            'file.max'          => 'Max 5 MB',
+            'g-recaptcha-response.required'  => 'required',
         ];
 
         $validator = Validator::make($request->all(), [
@@ -220,7 +224,7 @@ class FrontendController extends Controller
             'position' => 'required|min:3',
             'message'  => 'required|min:10|max:580',
             'file'     => 'required|max:5000',
-            // 'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required',
         ], $message);
 
         if ($validator->fails()) {
@@ -244,7 +248,7 @@ class FrontendController extends Controller
 
         DB::transaction(function () use ($request) {
 
-            $salt     = str_random(4);
+            $salt = str_random(4);
 
             $pathSource = 'amadeo/file/';
             $file       = $request->file('file');
@@ -261,21 +265,26 @@ class FrontendController extends Controller
 
             $save->save();
 
-            // $data = array(
-            //     'name' => $request->name,
-            //     'email' => $request->email,
-            //     'telp' => $request->telp,
-            //     'position' => $request->position,
-            //     'bodyMessage' => $request->message,
-            //     'file' => $pathSource . $filename,
-            //     'to' => GeneralConfig::find(15)->content,
-            // );
 
-            // Mail::send('frontend.emails.index', $data, function($message) use ($data, $request) {
-            //     $message->from($data['email']);
-            //     $message->to($data['to']);
-            //     $message->subject('Request for ' . $data['position']);
-            // });
+            $email = GeneralConfig::firstOrCreate(['name' => 'send-careers-to'], ['content' => 'amadeo.smtp@gmail.com', 'description' => 'email forward bila lebih dari satu email, pisahkan dengan titik koma(;)']);
+
+            $email_forward = explode(';', str_replace(' ', '', $email->content));
+
+            $data = array(
+                'name'        => $request->name,
+                'email'       => $request->email,
+                'telp'        => $request->telp,
+                'position'    => $request->position,
+                'bodyMessage' => $request->message,
+                'file'        => $pathSource . $filename,
+                'to'          => $email_forward,
+            );
+
+            Mail::send('frontend.emails.index', $data, function ($message) use ($data, $request) {
+                // $message->from($data['email']);
+                $message->to($data['to']);
+                $message->subject('Request for ' . $data['position']);
+            });
 
         });
 

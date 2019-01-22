@@ -46,10 +46,10 @@
           </div>
 
           <div class="item form-group {{ $errors->has('descript') ? 'has-error' : ''}}">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Descript <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="descript" class="form-control col-md-7 col-xs-12" name="descript" placeholder="Descript" required="required" type="text" value="{{ old('descript') }}">
+              <input id="descript" class="form-control col-md-7 col-xs-12" name="descript" placeholder="Description" required="required" type="text" value="{{ old('descript') }}">
               @if($errors->has('descript'))
                 <code><span style="color:red; font-size:12px;">{{ $errors->first('descript')}}</span></code>
               @endif
@@ -72,7 +72,7 @@
           </div>
           
           <div class="item form-group {{ $errors->has('title_picture') ? 'has-error' : ''}}">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">Title Picture <span class="required">*</span></label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Title Picture (Suggested Size 250x80)<span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="title_picture" class="form-control" name="title_picture" type="file" accept=".jpg,.png">
               @if($errors->has('title_picture'))
@@ -82,7 +82,7 @@
           </div>
 
           <div class="item form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">Picture <span class="required">*</span></label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Picture (Suggested Size 300x300)<span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="picture" class="form-control" name="picture" type="file" accept=".jpg,.png">
               @if($errors->has('picture'))
@@ -92,7 +92,7 @@
           </div>
           
           <div class="item form-group {{ $errors->has('background_picture') ? 'has-error' : ''}}">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">Background Picture <span class="required">*</span></label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Background Picture (Suggested Size 1366x360)<span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input id="background_picture" class="form-control" name="background_picture" type="file" accept=".jpg,.png">
               @if($errors->has('background_picture'))

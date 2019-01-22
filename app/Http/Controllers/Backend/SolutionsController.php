@@ -24,11 +24,11 @@ class SolutionsController extends Controller
 
     public function store(request $request){
       $message = [
-        'category.required' => 'Wajib di isi',
-        'picture.required' => 'Wajib di isi',
-        'picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-        'picture.image' => 'Format Gambar Tidak Sesuai',
-        'picture.max' => 'File Size Terlalu Besar',
+        'category.required' => 'This Field Required',
+        'picture.required' => 'This Field Required',
+        'picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+        'picture.image' => 'Invalid Format, Image file only',
+        'picture.max' => 'File too large',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -57,15 +57,15 @@ class SolutionsController extends Controller
       });
 
 
-      return redirect()->route('backend.solutions')->with('berhasil', 'Berhasil Menambah ');
+      return redirect()->route('backend.solutions')->with('berhasil', 'Data Has Been Added ');
     }
 
     public function change(request $request){
       $message = [
-        'category.required' => 'Wajib di isi',
-        'picture.dimensions' => 'Ukuran yg di terima 1366px x 1366px',
-        'picture.image' => 'Format Gambar Tidak Sesuai',
-        'picture.max' => 'File Size Terlalu Besar',
+        'category.required' => 'This Field Required',
+        'picture.dimensions' => 'Maximum Resolution 1366px x 1366px',
+        'picture.image' => 'Invalid Format, Image file only',
+        'picture.max' => 'File too large',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -97,7 +97,7 @@ class SolutionsController extends Controller
       });
 
 
-      return redirect()->route('backend.solutions')->with('berhasil', 'Berhasil Mengubah ');
+      return redirect()->route('backend.solutions')->with('berhasil', 'Data Has Been Updated ');
     }
 
     public function flagPublish($id){
@@ -109,7 +109,7 @@ class SolutionsController extends Controller
   			$SolutionsImg->flug_publish = 'N';
   		}
   		$SolutionsImg->save();
-	    return redirect()->route('backend.solutions')->with('berhasil', 'Berhasil Mengubah ');
+	    return redirect()->route('backend.solutions')->with('berhasil', 'Data Has Been Updated ');
     }
 
     public function delete($id){
@@ -120,6 +120,6 @@ class SolutionsController extends Controller
   			$SolutionsImg->delete();
   		});
 
-	    return redirect()->route('backend.solutions')->with('berhasil', 'Berhasil Menghapus ');
+	    return redirect()->route('backend.solutions')->with('berhasil', 'Data Has Been Deleted ');
     }
 }

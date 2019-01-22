@@ -28,9 +28,9 @@ class GeneralConfigController extends Controller
     public function store(request $request, $id){
     	
 		$message = [
-			'picture.dimensions' => 'Ukuran yg di terima 1024px x 1024px',
-			'picture.image' => 'Format Gambar Tidak Sesuai',
-			'picture.max' => 'File Size Terlalu Besar',
+			'picture.dimensions' => 'Maximum Resolution 1024px x 1024px',
+			'picture.image' => 'Invalid Format, Image file only',
+			'picture.max' => 'File too large',
 		];
 
 		$validator = Validator::make($request->all(), [

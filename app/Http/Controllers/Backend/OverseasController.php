@@ -31,7 +31,7 @@ class OverseasController extends Controller
         $Overseas->flug_publish = 'N';
       }
       $Overseas->save();
-      return redirect()->route('backend.overseas')->with('berhasil', 'Berhasil Mengubah '.$Overseas->name);
+      return redirect()->route('backend.overseas')->with('berhasil', 'Data Has Been Updated '.$Overseas->name);
     }
 
     public function delete($id){
@@ -42,15 +42,15 @@ class OverseasController extends Controller
 			$Overseas->delete();
 		});
 
-		return redirect()->route('backend.overseas')->with('berhasil', 'Berhasil Menghapus '.$Overseas->name);
+		return redirect()->route('backend.overseas')->with('berhasil', 'Data Has Been Deleted '.$Overseas->name);
     }
 
     public function store(request $request){
       $message = [
-        'name.required' => 'Wajib di isi',
-        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'css_left.required' => 'Wajib di isi',
-        'css_bottom.required' => 'Wajib di isi',
+        'name.required' => 'This Field Required',
+        'name.max' => 'Max Character 35',
+        'css_left.required' => 'This Field Required',
+        'css_bottom.required' => 'This Field Required',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -82,15 +82,15 @@ class OverseasController extends Controller
       });
 
 
-      return redirect()->route('backend.overseas')->with('berhasil', 'Berhasil Menambah '.$request->title);
+      return redirect()->route('backend.overseas')->with('berhasil', 'Data Has Been Added '.$request->title);
     }
 
     public function change(request $request){
       $message = [
-        'name.required' => 'Wajib di isi',
-        'name.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'css_left.required' => 'Wajib di isi',
-        'css_bottom.required' => 'Wajib di isi',
+        'name.required' => 'This Field Required',
+        'name.max' => 'Max Character 35',
+        'css_left.required' => 'This Field Required',
+        'css_bottom.required' => 'This Field Required',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -125,6 +125,6 @@ class OverseasController extends Controller
       });
 
 
-      return redirect()->route('backend.overseas')->with('berhasil', 'Berhasil Mengubah '.$request->name);
+      return redirect()->route('backend.overseas')->with('berhasil', 'Data Has Been Updated '.$request->name);
     }
 }

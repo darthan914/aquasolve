@@ -22,12 +22,12 @@ class CertificationController extends Controller
 
     public function store(request $request){
       $message = [
-        'title.required' => 'Wajib di isi',
-        'title.max' => 'Terlalu Panjang, Maks 35 Karakter',
-        'picture.required' => 'Wajib di isi',
-        'picture.dimensions' => 'Ukuran yg di terima 1024px x 1024px',
-        'picture.image' => 'Format Gambar Tidak Sesuai',
-        'picture.max' => 'File Size Terlalu Besar',
+        'title.required' => 'This Field Required',
+        'title.max' => 'Max Character 35',
+        'picture.required' => 'This Field Required',
+        'picture.dimensions' => 'Maximum Resolution 1024px x 1024px',
+        'picture.image' => 'Invalid Format, Image file only',
+        'picture.max' => 'File too large',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -55,17 +55,17 @@ class CertificationController extends Controller
       });
 
 
-      return redirect()->route('backend.certification')->with('berhasil', 'Berhasil Menambah '.$request->title);
+      return redirect()->route('backend.certification')->with('berhasil', 'Data Has Been Added '.$request->title);
     }
 
     public function change(request $request){
       $message = [
-        'title.required' => 'Wajib di isi',
+        'title.required' => 'This Field Required',
         'title.max' => 'Terlalu Panjang, Maks 25 Karakter',
         'title.unique' => 'Produk ini sudah ada',
-        'picture.dimensions' => 'Ukuran yg di terima 1024px x 1024px',
-        'picture.image' => 'Format Gambar Tidak Sesuai',
-        'picture.max' => 'File Size Terlalu Besar',
+        'picture.dimensions' => 'Maximum Resolution 1024px x 1024px',
+        'picture.image' => 'Invalid Format, Image file only',
+        'picture.max' => 'File too large',
       ];
 
       $validator = Validator::make($request->all(), [
@@ -97,7 +97,7 @@ class CertificationController extends Controller
       });
 
 
-      return redirect()->route('backend.certification')->with('berhasil', 'Berhasil Mengubah '.$request->title);
+      return redirect()->route('backend.certification')->with('berhasil', 'Data Has Been Updated '.$request->title);
     }
 
     public function flagPublish($id){
@@ -109,7 +109,7 @@ class CertificationController extends Controller
   			$Certification->flug_publish = 'N';
   		}
   		$Certification->save();
-	    return redirect()->route('backend.certification')->with('berhasil', 'Berhasil Mengubah '.$Certification->title);
+	    return redirect()->route('backend.certification')->with('berhasil', 'Data Has Been Updated '.$Certification->title);
     }
 
     public function delete($id){
@@ -120,6 +120,6 @@ class CertificationController extends Controller
 			$Certification->delete();
 		});
 
-	    return redirect()->route('backend.certification')->with('berhasil', 'Berhasil Menghapus '.$Certification->title);
+	    return redirect()->route('backend.certification')->with('berhasil', 'Data Has Been Deleted '.$Certification->title);
     }
 }

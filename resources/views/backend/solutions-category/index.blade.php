@@ -91,7 +91,9 @@
         <div class="x_title">
           <h2>Solutions Category </h2>
           <ul class="nav panel_toolbox">
+            @if(Auth::user()->can('create-page'))
             <a class="btn btn-success btn-sm" data-toggle='modal' data-target='.modal-form-add'><i class="fa fa-plus"></i> Add</a>
+            @endif
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -137,7 +139,7 @@
                   @endif
                   @if(Auth::user()->can('delete-page'))
                   <br>
-                  <a href="{{ route('backend.solutions-category.delete', ['id'=> $key->id]) }}">
+                  <a href="{{ route('backend.solutions-category.delete', ['id'=> $key->id]) }}" onclick="return confirm('Delete this data?');">
                     <span class="label label-danger" data-toggle="tooltip" data-placement="left" title="Click to Delete This Data">
                       <i class="fa fa-trash "></i> Delete
                     </span>

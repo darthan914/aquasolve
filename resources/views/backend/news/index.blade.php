@@ -35,7 +35,9 @@
         <div class="x_title">
           <h2>News </h2>
           <ul class="nav panel_toolbox">
+            @if(Auth::user()->can('create-news'))
             <a href="{{ route('backend.news.add') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add</a>
+            @endif
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -45,7 +47,7 @@
               <tr role="row">
                 <th>No</th>
                 <th>Name</th>
-                <th>Descript</th>
+                <th>Description</th>
                 <th>Picture</th>
                 <th>Tools</th>
               </tr>
@@ -86,9 +88,19 @@
                   </a>
                   @endif
 
+                  
+                  <br>
+                  <a 
+                    href="{{ route('backend.news.preview', ['id'=> $key->id]) }}" target="_new" 
+                  >
+                    <span class="label label-warning" data-toggle="tooltip" data-placement="left" title="Click to Preview">
+                      <i class="fa fa-eye "></i> Preview
+                    </span>
+                  </a>
+
                   @if(Auth::user()->can('delete-news'))
                   <br>
-                  <a href="{{ route('backend.news.delete', ['id'=> $key->id]) }}">
+                  <a href="{{ route('backend.news.delete', ['id'=> $key->id]) }}"  onclick="return confirm('Delete this data?');">
                     <span class="label label-danger" data-toggle="tooltip" data-placement="left" title="Click to Delete This Data">
                       <i class="fa fa-trash "></i> Delete
                     </span>

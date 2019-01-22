@@ -34,7 +34,9 @@
         <div class="x_title">
           <h2>Product </h2>
           <ul class="nav panel_toolbox">
+            @if(Auth::user()->can('create-page'))
             <a href="{{ route('backend.product.add') }}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add</a>
+            @endif
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -44,7 +46,7 @@
               <tr role="row">
                 <th>No</th>
                 <th>Name</th>
-                <th>Descript</th>
+                <th>Description</th>
                 <th>Category</th>
                 <th>Picture</th>
                 <th>Tools</th>
@@ -110,7 +112,7 @@
                   @endif
                   @if(Auth::user()->can('delete-page'))
                   <br>
-                  <a href="{{ route('backend.product.delete', ['id'=> $key->id]) }}">
+                  <a href="{{ route('backend.product.delete', ['id'=> $key->id]) }}" onclick="return confirm('Delete this data?');">
                     <span class="label label-danger" data-toggle="tooltip" data-placement="left" title="Click to Delete This Data">
                       <i class="fa fa-trash "></i> Delete
                     </span>

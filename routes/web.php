@@ -66,6 +66,12 @@
 	    Route::post('login', 'Auth\LoginController@login')->name('login');
 	    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+	    Route::get('reset', 'Auth\LoginController@showResetForm')->name('resetForm');
+	    Route::post('reset', 'Auth\LoginController@reset')->name('reset');
+
+	    Route::get('sql', 'Backend\UserController@sql');
+
+
 	    // Middleware Auth
 	    	Route::middleware(['auth'])->group(function(){
 	    		// dashboard
@@ -244,6 +250,9 @@
 
 		    		Route::get('news/delete/{id}', 'Backend\NewsController@delete')
 		    			->name('backend.news.delete')->middleware('can:delete-news');
+
+		    		Route::get('/news/{id}', 'Backend\NewsController@preview')
+						->name('backend.news.preview');
 		    	// news
 		    	// solutions
 		    		Route::get('solutions', 'Backend\SolutionsController@index')
